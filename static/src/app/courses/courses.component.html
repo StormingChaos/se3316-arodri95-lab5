@@ -1,0 +1,84 @@
+<h1>Welcome to Western University Course Search</h1>
+
+<div class="search">
+    <h3>Search for Courses</h3>
+
+    <div class="form">
+        <label for="subject-select">Subject: </label>
+        <select id="subject-select" (change)="getCourseCodes()" [(ngModel)]="subjectSel">
+            <option>All Subjects</option>
+            <option *ngFor="let subject of subjectList">{{subject["subject"]}}</option>
+        </select>
+        <label for="course-select"> Course: </label>
+        <select id="course-select" (change)="getCourse()" [(ngModel)]="courseSel">
+            <option>All Courses</option>
+            <option *ngFor="let code of courseCodes">{{code["catalog_nbr"]}}</option>
+        </select>
+        <label for="component-select"> Component: </label>
+        <select id="component-select" [(ngModel)]="compSel">
+            <option>All Components</option>
+            <option>LEC</option>
+            <option>LAB</option>
+            <option>TUT</option>
+        </select>
+    </div>
+</div>
+
+<div class="display">
+    <h3>Course List</h3>
+    <!-- TODO Add Toggles for each list and remove breaks -->
+
+    <!-- Course List -->
+    <ng-container *ngIf="showCourse">
+    <ul class="courseList" *ngFor="let course of courseDisp">
+        <li>{{course["subject"]}} {{course["catalog_nbr"]}}: {{course["className"]}}<br>
+            Course Information
+            <ul *ngFor="let item of course.course_info">
+                <li>
+                    Class Number: {{item["class_nbr"]}}<br>
+                    Section: {{item["class_section"]}}<br>
+                    Instructors:
+                    <ul *ngFor="let instructor of item.instructors">
+                        <li>{{instructor}}</li>
+                    </ul><br>
+                    Component: {{item["ssr_component"]}}<br>
+                    Start Time: {{item["start_time"]}}<br>
+                    End Time: {{item["end_time"]}}<br>
+                    Days: 
+                    <ul *ngFor="let day of item.days">
+                        <li>{{day}}</li>
+                    </ul>
+                    Campus: {{item["campus"]}}<br>
+                    Location: {{item["facility_ID"]}}<br>
+                    Enrollment Status: {{item["enrl_stat"]}}<br>
+                    Requisites: 
+                    <ul>
+                        <li>
+                            {{item["descrlong"]}}
+                        </li>
+                    </ul>
+                    Details:
+                    <ul>
+                        <li>
+                            {{item["descr"]}}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            Description: {{course["catalog_description"]}}
+        </li>
+    </ul>
+    </ng-container>
+    <!-- Subject List -->
+    <ng-container *ngIf="showSubjects">
+    <ul class="subjectList" *ngFor="let course of subjectDisp">
+        <li>{{course["subject"]}} {{course["catalog_nbr"]}}: {{course["className"]}}</li>
+    </ul>
+    </ng-container>
+    <!-- Full Course List -->
+    <ng-container *ngIf="showList">
+    <ul class="fullCourseList" *ngFor="let course of courseList">
+        <li>{{course["subject"]}} {{course["catalog_nbr"]}}:  {{course["className"]}}</li>
+    </ul>
+    </ng-container>
+</div>

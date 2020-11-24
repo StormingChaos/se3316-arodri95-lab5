@@ -1,0 +1,112 @@
+<h1>Welcome to Western University Timetable Search</h1>
+
+<div class="search">
+    <h3>Create a Timetable</h3>
+
+    <div class="form">
+        <label for="create-schedule">Timetable Name </label>
+        <input type="text" id='schedule-name' [(ngModel)]="schName">
+        <button id="create-schedule" (click)="createSchedule()">Create</button>
+        <p>Invalid characters will be removed from the name</p>
+    </div>
+    <h3>Update Timetable</h3>
+    <div class="form">
+        <label for='schedule-name-dropdown'>Timetable </label>
+        <select id='schedule-name-dropdown' [(ngModel)]="scheduleSel">
+            <option>Choose a Timetable</option>
+            <option *ngFor="let schedule of scheduleList">{{schedule["name"]}}</option>
+        </select>
+        <br>
+        <!-- Subject Selection Box -->
+        <label for="add-subject"> Subject </label>
+        <select id="add-subject" (change)="getCourseCodes()" [(ngModel)]="subjectSel">
+            <option>Choose a Subject</option>
+            <option *ngFor="let subject of subjectList">{{subject["subject"]}}</option>
+        </select>
+
+        <!-- Course Selection box -->
+        <label for="add-course"> Course Code </label>
+        <select id='add-course' [(ngModel)]="courseSel">
+            <option>Choose a Course</option>
+            <option *ngFor="let code of courseCodes">{{code["catalog_nbr"]}}</option>
+        </select>
+
+        <!-- Add course to schedule button -->
+        <button id="update-list" (click)="addCourse()">Add Course to List</button>
+
+        <!-- Display courses to be added -->
+        <div class='add'>
+            <ul id="pending" *ngFor="let course of pending">
+                <li> - {{course["subject"]}} {{course["catalog_nbr"]}}</li>
+            </ul>
+            <button id="clear-pending" (click)="clearSelections()">Clear Course Selections</button>
+        </div>
+
+        <!-- Schedule Management Buttons -->
+        <button id="confirm-list" (click)="updateSchedule();displaySchedule()">Confirm Changes</button>
+        <button id="delete-schedule" (click)="deleteSchedule()">Delete this Timetable</button>
+        <button id="delete-all" (click)="deleteAllSchedules()">Delete all Timetables</button>
+    </div>
+</div>
+
+<div class="display">
+    <h3>Timetable List</h3>
+
+    <label class="form" for="schedule-select">Display Timetable: </label>
+    <select id="schedule-select" (change)="displaySchedule()" [(ngModel)]="schNameDisp">
+        <option>All Timetables</option>
+        <option *ngFor="let schedule of scheduleList">{{schedule["name"]}}</option>
+    </select>
+    <br>
+
+    <!-- TODO Toggle Display and fix info-->
+    <ng-container *ngIf="showTimetable">
+        <p class = "title">Timetable Name: {{scheduleDisp["name"]}} Number of Courses: {{scheduleDisp["numCourses"]}}</p>
+        <!-- Course List -->
+        <ul *ngFor="let course of schDispList">
+            <li class="scheduleDisplay">{{course["subject"]}} {{course["catalog_nbr"]}}: {{course["className"]}}<br>
+                Course Information
+                <ul *ngFor="let item of course.course_info">
+                    <li>
+                        Class Number: {{item["class_nbr"]}}<br>
+                        Section: {{item["class_section"]}}<br>
+                        Instructors:
+                        <ul *ngFor="let instructor of item.instructors">
+                            <li>{{instructor}}</li>
+                        </ul><br>
+                        Component: {{item["ssr_component"]}}<br>
+                        Start Time: {{item["start_time"]}}<br>
+                        End Time: {{item["end_time"]}}<br>
+                        Days: 
+                        <ul *ngFor="let day of item.days">
+                            <li>{{day}}</li>
+                        </ul>
+                        Campus: {{item["campus"]}}<br>
+                        Location: {{item["facility_ID"]}}<br>
+                        Enrollment Status: {{item["enrl_stat"]}}<br>
+                        Requisites: 
+                        <ul>
+                            <li>
+                                {{item["descrlong"]}}
+                            </li>
+                        </ul>
+                        Details:
+                        <ul>
+                            <li>
+                                {{item["descr"]}}
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                Description: {{course["catalog_description"]}}
+            </li>
+        </ul>
+    </ng-container>
+
+    <br>
+    <ng-container *ngIf="showList">
+    <ul class="fullScheduleList" *ngFor="let schedule of scheduleList">
+        <li>{{schedule["name"]}}, Number of Courses: {{schedule["numCourses"]}}</li>
+    </ul>
+    </ng-container>
+</div>

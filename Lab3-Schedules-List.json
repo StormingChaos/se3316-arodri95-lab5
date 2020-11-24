@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Bewareghosts",
+    "courses": [
+      {
+        "subject": "ACTURSCI",
+        "catalog_nbr": "1021B"
+      },
+      {
+        "subject": "AMERICAN",
+        "catalog_nbr": "2310F"
+      },
+      {
+        "subject": "AMERICAN",
+        "catalog_nbr": "3310F"
+      }
+    ],
+    "numCourses": 3
+  },
+  {
+    "name": "hello",
+    "courses": [
+      {
+        "subject": "APPLMATH",
+        "catalog_nbr": "1201B"
+      }
+    ]
+  }
+]
