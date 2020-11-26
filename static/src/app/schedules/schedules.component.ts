@@ -25,7 +25,7 @@ export class SchedulesComponent implements OnInit {
   subjectList = [];
   courseCodes = [];
   schName = "";
-  scheduleSel = "Choose a Timetable";
+  scheduleSel = "Choose a Schedule";
   subjectSel = "Choose a Subject";
   courseSel = "Choose a Course";
   pending = [];
@@ -94,14 +94,14 @@ export class SchedulesComponent implements OnInit {
     {
       this.backend.postNewSchedule(this.schName).subscribe(
         (response) => {
-          alert(`Timetable created successfully`);
+          alert(`Schedule created successfully`);
           this.getSchedules();
         },
-        (error) => {console.log(error);alert(`Timetable Creation Failed: ${error.error}`)}
+        (error) => {console.log(error);alert(`Schedule Creation Failed: ${error.error}`)}
       )
     }
     else{
-      alert(`Error: Timetable name exceeds 20 characters`);
+      alert(`Error: Schedule name exceeds 20 characters`);
     }
   }
 
@@ -135,7 +135,7 @@ export class SchedulesComponent implements OnInit {
   }
 
   updateSchedule():void{
-    if (this.scheduleSel != "Choose a Timetable")
+    if (this.scheduleSel != "Choose a Schedule")
     {
       if (this.pending.length != 0)
       {
@@ -152,62 +152,61 @@ export class SchedulesComponent implements OnInit {
       }
     }
     else{
-      alert("Error: No Timetable Selected");
+      alert("Error: No Schedule Selected");
     }
   }
 
   deleteSchedule():void {
-    if (this.scheduleSel != "Choose a Timetable"){
+    if (this.scheduleSel != "Choose a Schedule"){
       let temp = this.scheduleSel;
       this.backend.deleteSchedule(this.scheduleSel).subscribe(
         (response) => {
-          alert(`Timetable \'${temp}\' was deleted`);
+          alert(`Schedule \'${temp}\' was deleted`);
           this.getSchedules();
         },
         (error) => {
           if (error["status"] == 200)
           {
-            alert(`Timetable \'${temp}\' was deleted`);
+            alert(`Schedule \'${temp}\' was deleted`);
             this.getSchedules();
           }
           else{
             console.log(error);
-            alert("Error deleting timetable");
+            alert("Error deleting schedule");
           }
         }
       )
     }
     else{
-      alert("Error: No Timetable Selected");
+      alert("Error: No Schedule Selected");
     }
   }
 
   deleteAllSchedules():void{
     this.backend.deleteAllSchedules().subscribe(
       (response) => {
-        alert("All Timetables Deleted");
+        alert("All Schedules Deleted");
         this.getSchedules();
       },
       (error) => {
         if (error["status"] == 200)
           {
-            alert(`All Timetables Deleted`);
+            alert(`All Schedules Deleted`);
             this.getSchedules();
           }
           else{
             console.log(error);
-            alert("Error Deleting Timetables");
+            alert("Error Deleting Schedules");
           }
       }
     )
   }
 
   displaySchedule():void{
-    //TODO show courses within selected schedule and timetable
     this.showList = false;
     this.showTimetable = true;
     this.schDispList = [];
-    if (this.schNameDisp != "All Timetables")
+    if (this.schNameDisp != "All Schedules")
     {
       this.backend.getSchedule(this.schNameDisp).subscribe(
         (response) => {
@@ -227,11 +226,12 @@ export class SchedulesComponent implements OnInit {
       )
     }
     else{
-      //TODO toggle timetable display off
+      // toggle timetable display off
       //toggle full list on
       this.scheduleDisp = new Schedule();
       this.showTimetable = false;
       this.showList = true;
+      this.getSchedules();
     }
   }
 }

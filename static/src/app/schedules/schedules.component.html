@@ -1,19 +1,19 @@
-<h1>Welcome to Western University Timetable Search</h1>
+<h1>Schedule Manager</h1>
 
 <div class="search">
-    <h3>Create a Timetable</h3>
+    <h3>Create a Schedule</h3>
 
     <div class="form">
-        <label for="create-schedule">Timetable Name </label>
+        <label for="create-schedule">Schedule Name </label>
         <input type="text" id='schedule-name' [(ngModel)]="schName">
         <button id="create-schedule" (click)="createSchedule()">Create</button>
         <p>Invalid characters will be removed from the name</p>
     </div>
-    <h3>Update Timetable</h3>
+    <h3>Update Schedule</h3>
     <div class="form">
-        <label for='schedule-name-dropdown'>Timetable </label>
+        <label for='schedule-name-dropdown'>Schedule </label>
         <select id='schedule-name-dropdown' [(ngModel)]="scheduleSel">
-            <option>Choose a Timetable</option>
+            <option>Choose a Schedule</option>
             <option *ngFor="let schedule of scheduleList">{{schedule["name"]}}</option>
         </select>
         <br>
@@ -44,24 +44,23 @@
 
         <!-- Schedule Management Buttons -->
         <button id="confirm-list" (click)="updateSchedule();displaySchedule()">Confirm Changes</button>
-        <button id="delete-schedule" (click)="deleteSchedule()">Delete this Timetable</button>
-        <button id="delete-all" (click)="deleteAllSchedules()">Delete all Timetables</button>
+        <button id="delete-schedule" (click)="deleteSchedule()">Delete this Schedule</button>
+        <button id="delete-all" (click)="deleteAllSchedules()">Delete all Schedules</button>
     </div>
 </div>
 
 <div class="display">
-    <h3>Timetable List</h3>
+    <h3>Schedule List</h3>
 
-    <label class="form" for="schedule-select">Display Timetable: </label>
+    <label class="form" for="schedule-select">Display Schedule: </label>
     <select id="schedule-select" (change)="displaySchedule()" [(ngModel)]="schNameDisp">
-        <option>All Timetables</option>
+        <option>All Schedules</option>
         <option *ngFor="let schedule of scheduleList">{{schedule["name"]}}</option>
     </select>
     <br>
 
-    <!-- TODO Toggle Display and fix info-->
     <ng-container *ngIf="showTimetable">
-        <p class = "title">Timetable Name: {{scheduleDisp["name"]}} Number of Courses: {{scheduleDisp["numCourses"]}}</p>
+        <p class = "title">Schedule Name: {{scheduleDisp["name"]}} Number of Courses: {{scheduleDisp["numCourses"]}}</p>
         <!-- Course List -->
         <ul *ngFor="let course of schDispList">
             <li class="scheduleDisplay">{{course["subject"]}} {{course["catalog_nbr"]}}: {{course["className"]}}<br>

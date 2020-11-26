@@ -82,7 +82,6 @@ export class CoursesComponent implements OnInit {
     }
   }
 
-  // TODO change results based on component selection
   getCourse():void{
     if (this.courseSel != "All Courses")
     {
@@ -95,7 +94,6 @@ export class CoursesComponent implements OnInit {
         },
         (error) => {console.log(error)}
       )
-      //TODO toggle course display on
     }
     else{
       //toggle subject list on
