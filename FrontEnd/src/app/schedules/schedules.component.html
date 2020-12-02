@@ -4,10 +4,13 @@
     <h3>Create a Schedule</h3>
 
     <div class="form">
-        <label for="create-schedule">Schedule Name </label>
-        <input type="text" id='schedule-name' [(ngModel)]="schName">
-        <button id="create-schedule" (click)="createSchedule()">Create</button>
-        <p>Invalid characters will be removed from the name</p>
+        <form (submit)="createSchedule()">
+            <label for="create-schedule">Schedule Name </label>
+            <input type="text" name='schedule-name' [(ngModel)]="schName">
+            <input type='submit' value="Create">
+            <p>Invalid characters will be removed from the name</p>
+        </form>
+
     </div>
     <h3>Update Schedule</h3>
     <div class="form">
