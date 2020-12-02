@@ -1,0 +1,11 @@
+h2 {
+    text-decoration: underline;
+    margin-left: 1em;
+}
+p {
+    margin-left: 1em;
+}
+
+.login, .create-account {
+    margin-left: 1em;
+}
