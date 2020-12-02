@@ -1,0 +1,40 @@
+h1{
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px black;
+}
+body{
+    background-color: rgb(102, 36, 141);
+}
+.intro {
+    border-radius: 25px;
+    border: 2px solid #000000;
+    padding: 20px;
+    background-color: rgb(167, 119, 179);
+}
+.search {
+    border-radius: 25px;
+    border: 2px solid #000000;
+    padding: 20px;
+    background-color: rgb(211, 119, 119);
+}
+.schedule {
+    border-radius: 25px;
+    border: 2px solid #000000;
+    padding: 20px;
+    background-color: rgb(103, 200, 224);
+}
+.add {
+    border-radius: 25px;
+    border: 2px solid #000000;
+    padding: 20px;
+    background-color: rgb(167, 225, 240);
+}
+button {
+    border-radius: 10px;
+    border: 2px solid crimson;
+    background-color: aquamarine;
+    transition-duration: 0.2s;
+}
+button:hover {
+    background-color: rgb(42, 179, 221);
+}

@@ -42,15 +42,6 @@ li a:hover{
     background-color: rgb(111, 56, 182);
 }
 
-h1 {
-    margin-left: 1em;
-}
-
 div h3 {
     text-decoration: underline;
-    margin-left: 1em;
-}
-
-.form {
-    margin-left: 2em;
 }
