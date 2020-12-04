@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 8000;
 const router = express.Router();
+const https = require('https');
 
 //for file management
 const fs = require('fs');
@@ -10,6 +11,12 @@ const data2 = fs.readFileSync('Lab3-Schedules-List.json', 'utf-8');
 const courses = JSON.parse(data);
 const schedules = JSON.parse(data2);
 const bodyparser = require('body-parser');
+
+const options = {
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem')
+};
+
 
 //setup body parser
 app.use(bodyparser.urlencoded({extended:false}));
@@ -210,6 +217,11 @@ router.route('/schedules/:name')
 //install the router at /api/courses
 app.use('/api/catalogue', router);
 
-app.listen(port, () => {
+var httpsServer = https.createServer(options, app);
+httpsServer.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
+
+// app.listen(port, () => {
+//     console.log(`Listening on port ${port}`);
+// });

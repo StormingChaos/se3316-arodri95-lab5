@@ -1,0 +1,7 @@
+<!-- If not authenticated, show log in button -->
+<button *ngIf='(auth.isAuthenticated$ | async) === false' 
+(click)="loginWithRedirect()">Log In</button>
+
+<!-- if authenticated, show log out button -->
+<button  
+(click)="logout()">Log Out</button>

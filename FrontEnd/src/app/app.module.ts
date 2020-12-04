@@ -11,6 +11,7 @@ import { SchedulesComponent } from './schedules/schedules.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PoliciesComponent } from './policies/policies.component';
 import { AuthButtonComponent } from './auth-button/auth-button.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AuthButtonComponent } from './auth-button/auth-button.component';
     HomepageComponent,
     PoliciesComponent,
     AuthButtonComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
