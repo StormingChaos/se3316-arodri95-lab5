@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { AuthModule } from '@auth0/auth0-angular';
 
 import { AppComponent } from './app.component';
 import { CoursesComponent } from './courses/courses.component';
@@ -22,7 +23,11 @@ import { PoliciesComponent } from './policies/policies.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AuthModule.forRoot({
+      domain: 'dev-qje5xl60.us.auth0.com',
+      clientId: 'c5FWYr8XezaDmzyqcaMsn1g5F04bR54z'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
