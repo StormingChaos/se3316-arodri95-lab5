@@ -1,9 +1,9 @@
 <!-- If not authenticated, show log in button -->
 <ng-template #loggedOut>
-    <button (click)="loginWithRedirect()">Log In</button>
+    <a (click)="loginWithRedirect()">Log In</a>
 </ng-template>
 
 <!-- if authenticated, show log out button -->
-<ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
-    <button (click)="logout()">Log Out</button>
+<ng-container *ngIf="auth.user$ | async as user; else loggedOut">
+    <a href="#" routerLink="/profile">{{ user.name }}</a>
 </ng-container>

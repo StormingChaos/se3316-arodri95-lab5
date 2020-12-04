@@ -18,12 +18,10 @@ export class AuthButtonComponent implements OnInit {
 
   loginWithRedirect() {
     this.auth.loginWithPopup();
-    console.log(this.auth.isAuthenticated$);
   }
 
   logout() {
     this.auth.logout({ returnTo: this.doc.location.origin });
-    console.log(this.auth.isAuthenticated$);
   }
 
 }
