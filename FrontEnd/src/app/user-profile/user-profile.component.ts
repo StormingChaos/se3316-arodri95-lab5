@@ -17,8 +17,13 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  nick="";
+  fullName="";
+
   logout() {
     this.auth.logout({ returnTo: this.doc.location.origin });
-    console.log(this.auth.isAuthenticated$);
+  }
+
+  changeName() {
   }
 }

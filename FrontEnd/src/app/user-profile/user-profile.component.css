@@ -1,0 +1,13 @@
+.profile{
+    display: block;
+    border-width: 5px;
+    border-style: solid;
+    padding: 0;
+}
+
+li {
+    border-style: solid;
+    border-color: gray;
+    border-width: 2px;
+    padding: 1em;
+}
