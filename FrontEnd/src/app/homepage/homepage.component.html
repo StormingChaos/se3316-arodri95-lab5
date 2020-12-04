@@ -7,44 +7,5 @@
     create and manage your own schedules.
 </p>
 
-<h2>Log In</h2>
-
-<div class="login">
-    <form>
-        <label for="username">Username
-            &nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <input type='text' id="username">
-        <br>
-        <label for="password">Password
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <input type='password' id="password">
-        <br>
-        <button type='submit' id='log-in'>Log In</button>
-    </form>
-
-    <p>Log in with Google!</p>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-    <a href="#" onclick="signOut();">Sign out</a>
-
-</div>
-
-<h2>Create an Account</h2>
-
-<div class="create-account">
-    <form>
-        <label for="email">Email
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <input type='text' id="email">
-        <br>
-        <label for="create-username">Username
-            &nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <input type='text' id="create-username">
-        <br>
-        <label for="create-password">Password
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <input type='password' id="create-password">
-        <br>
-        <button type='submit' id="create-account">Create Account</button>
-    </form>
-</div>
+<!-- ADD AUTH0 LOGIN/LOGOUT BUTTON -->
+<app-auth-button></app-auth-button>

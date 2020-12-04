@@ -10,6 +10,7 @@ import { CoursesComponent } from './courses/courses.component';
 import { SchedulesComponent } from './schedules/schedules.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PoliciesComponent } from './policies/policies.component';
+import { AuthButtonComponent } from './auth-button/auth-button.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PoliciesComponent } from './policies/policies.component';
     CoursesComponent,
     SchedulesComponent,
     HomepageComponent,
-    PoliciesComponent
+    PoliciesComponent,
+    AuthButtonComponent,
   ],
   imports: [
     BrowserModule,
