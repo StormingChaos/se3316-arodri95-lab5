@@ -1,7 +1,9 @@
 <!-- If not authenticated, show log in button -->
-<button *ngIf='(auth.isAuthenticated$ | async) === false' 
-(click)="loginWithRedirect()">Log In</button>
+<ng-template #loggedOut>
+    <button (click)="loginWithRedirect()">Log In</button>
+</ng-template>
 
 <!-- if authenticated, show log out button -->
-<button  
-(click)="logout()">Log Out</button>
+<ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+    <button (click)="logout()">Log Out</button>
+</ng-container>
