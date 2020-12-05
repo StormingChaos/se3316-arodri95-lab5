@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 
+import Config from '../../../AWSURL.json';
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -13,11 +15,12 @@ const httpOptions = {
 })
 export class BackendService {
 
-  url = "https://localhost:8000";
+  url = Config.url;
 
   constructor(private http: HttpClient) { }
 
   getCourseList() :any {
+    console.log(Config);
     return this.http.get(`${this.url}/api/catalogue`, 
     {observe: 'body', responseType: 'json'});
   }
