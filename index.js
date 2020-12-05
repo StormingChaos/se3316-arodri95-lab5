@@ -8,10 +8,8 @@ const https = require('https');
 const fs = require('fs');
 const data = fs.readFileSync('Lab3-timetable-data.json', 'utf-8');
 const data2 = fs.readFileSync('Lab3-Schedules-List.json', 'utf-8');
-const data3 = fs.readFileSync('Lab5-Course-Reviews.json', 'utf-8');
 const courses = JSON.parse(data);
 const schedules = JSON.parse(data2);
-const reviews = JSON.parse(data3);
 const bodyparser = require('body-parser');
 
 const options = {
@@ -125,14 +123,6 @@ router.route('/subjects/:subject/:courseCode/:opComponent?')
         }
     })
 
-router.route('/reviews/:subject/:courseCode')
-    // TODO get list of reviews for a course
-    .get((req, res) => {
-
-    })
-    //TODO post a review
-    //TODO remove a review
-    //TODO toggle hide a review
 
 //FOR SCHEDULES
 router.route('/schedules')
