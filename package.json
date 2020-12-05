@@ -18,6 +18,7 @@
   "homepage": "https://github.com/StormingChaos/se3316-arodri95-lab3#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "ngx-cookie-service": "^11.0.2",
     "openssl": "^1.1.0"
   }
 }
