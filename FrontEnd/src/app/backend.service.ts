@@ -20,7 +20,6 @@ export class BackendService {
   constructor(private http: HttpClient) { }
 
   getCourseList() :any {
-    console.log(Config);
     return this.http.get(`${this.url}/api/catalogue`, 
     {observe: 'body', responseType: 'json'});
   }
@@ -29,6 +28,11 @@ export class BackendService {
     return this.http.get(`${this.url}/api/catalogue/schedules`,
     {observe: 'body', responseType: 'json'});
   }
+
+  // getPublicScheduleList() : any {
+  //   return this.http.get(`${this.url}/api/catalogue/schedules/public`,
+  //   {observe: 'body', responseType: 'json'});
+  // }
 
   getSubjectList() : any {
     return this.http.get(`${this.url}/api/catalogue/subjects`,
@@ -40,14 +44,14 @@ export class BackendService {
     {observe: 'body', responseType:'json'});
   }
 
-  postNewSchedule(name:string):any{
+  postNewSchedule(name:string, isPublic:Boolean, description:string, date:any, user:String):any{
     return this.http.post(`${this.url}/api/catalogue/schedules`,
-    JSON.stringify({name:name, courses:[]}), httpOptions);
+    JSON.stringify({name:name, user:user, date:date, isPublic:isPublic, description:description, courses:[]}), httpOptions);
   }
 
-  putSchedule(name:string, courses:Array<object>):any{
+  putSchedule(name:string, isPublic:Boolean, description:string, date:any, user:String, courses:Array<object>):any{
     return this.http.put(`${this.url}/api/catalogue/schedules/${name}`,
-    JSON.stringify({name:name, courses:courses}), httpOptions);
+    JSON.stringify({name:name, user:user, date:date, isPublic:isPublic, courses:courses}), httpOptions);
   }
 
   deleteSchedule(name:string):any{
@@ -59,6 +63,7 @@ export class BackendService {
   }
 
   getSchedule(name:string):any{
-    return this.http.get(`${this.url}/api/catalogue/schedules/${name}`);
+    return this.http.get(`${this.url}/api/catalogue/schedules/${name}`,
+    {observe: 'body', responseType:'json'});
   }
 }

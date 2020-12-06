@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { BackendService } from '../backend.service';
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public backend: BackendService) { }
 
   ngOnInit(): void {
   }
+
+  // getPublicSchedules(){
+  //   this.backend.getPublicScheduleList();
+  // }
 
 }

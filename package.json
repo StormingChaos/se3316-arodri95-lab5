@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/StormingChaos/se3316-arodri95-lab3#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "openssl": "^1.1.0"
   }

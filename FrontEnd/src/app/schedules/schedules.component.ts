@@ -1,22 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 
 import { BackendService } from "../backend.service"
+import { AuthService } from '@auth0/auth0-angular';
+import { DOCUMENT, DatePipe } from '@angular/common';
 
 class Course{
-  subject;
-  className;
+  catalog_nbr:any;
+  subject:string;
+  className:string;
 }
 
 class Schedule{
-  name;
-  numCourses;
-  courses;
+  name:string;
+  user:string;
+  isPublic:boolean;
+  numCourses:Number;
+  courses:Array<Course>;
 }
 
 @Component({
   selector: 'app-schedules',
   templateUrl: './schedules.component.html',
-  styleUrls: ['./schedules.component.css']
+  styleUrls: ['./schedules.component.css'],
+  providers: [DatePipe]
 })
 export class SchedulesComponent implements OnInit {
 
@@ -24,7 +30,6 @@ export class SchedulesComponent implements OnInit {
   scheduleList = [];
   subjectList = [];
   courseCodes = [];
-  schName = "";
   scheduleSel = "Choose a Schedule";
   subjectSel = "Choose a Subject";
   courseSel = "Choose a Course";
@@ -33,11 +38,24 @@ export class SchedulesComponent implements OnInit {
   schNameDisp = "";
   schDispList = [];
 
+  // create schedule
+  setSchName = "";
+  setPublic = false;
+  setDescription = "";
+
+  // edit schedule
+  schName = "";
+  isPublic = false;
+  description = "";
+
   //toggles
   public showTimetable:boolean = false;
   public showList:boolean = true;
 
-  constructor(private backend: BackendService) { }
+  constructor(private backend: BackendService,
+    public auth: AuthService,
+    @Inject(DOCUMENT) private doc: Document,
+    public datePipe: DatePipe) { }
 
   ngOnInit(): void {
     this.getCourses();
@@ -90,15 +108,22 @@ export class SchedulesComponent implements OnInit {
   }
 
   createSchedule() : void {
-    if (this.schName.length <= 20)
+    if (this.setSchName.length <= 20)
     {
-      this.backend.postNewSchedule(this.schName).subscribe(
-        (response) => {
-          alert(`Schedule created successfully`);
-          this.getSchedules();
-        },
-        (error) => {console.log(error);alert(`Schedule Creation Failed: ${error.error}`)}
-      )
+      this.auth.user$.subscribe(
+        (res) => {
+          this.backend.postNewSchedule(this.setSchName, this.setPublic, this.setDescription, Date.now(), res.nickname).subscribe(
+            (response) => {
+              alert(`Schedule '${this.setSchName}' created successfully`);
+              this.getSchedules();
+              this.setSchName = "";
+              this.setPublic = false;
+              this.setDescription = "";
+            },
+            (error) => {console.log(error);alert(`Schedule Creation Failed: ${error.error}`)}
+          );
+        }
+      );
     }
     else{
       alert(`Error: Schedule name exceeds 20 characters`);
@@ -134,18 +159,30 @@ export class SchedulesComponent implements OnInit {
     this.pending = [];
   }
 
+  getScheduleDetails() {
+    if (this.scheduleSel != "Choose a Schedule"){
+      
+    }
+    else{
+      // clear fields
+      this.schName = "";
+      this.isPublic = false;
+      this.description = "";
+    }
+  }
+
   updateSchedule():void{
     if (this.scheduleSel != "Choose a Schedule")
     {
       if (this.pending.length != 0)
       {
-        this.backend.putSchedule(this.scheduleSel, this.pending).subscribe(
-          (response) => {
-            alert(`Courses added to schedule \'${this.scheduleSel}\' successfully`);
-            this.pending = [];
-          },
-          (error) => {console.log(error)}
-        )
+          this.backend.putSchedule(this.scheduleSel, this.isPublic, this.description, Date.now(), "testname: arodri95", this.pending).subscribe(
+            (response) => {
+              alert(`Courses added to schedule \'${this.scheduleSel}\' successfully`);
+              this.pending = [];
+            },
+            (error) => {console.log(error)}
+          )
       }
       else{
         alert("Error: No Courses Chosen");
@@ -209,20 +246,20 @@ export class SchedulesComponent implements OnInit {
     if (this.schNameDisp != "All Schedules")
     {
       this.backend.getSchedule(this.schNameDisp).subscribe(
-        (response) => {
+        (response:any) => {
           this.scheduleDisp = response as unknown as Schedule;
 
           for (var i = 0; i < this.scheduleDisp.courses.length; i++)
           {
             this.backend.getCourse(this.scheduleDisp.courses[i].subject, this.scheduleDisp.courses[i].catalog_nbr).subscribe(
-              (response) => {
+              (response:any) => {
                 this.schDispList.push(response[0] as unknown as Array<object>);
               },
-              (error) => {console.log(error)}
+              (error:any) => {console.log(error)}
             )
           }
         },
-        (error) => {console.log(error)}
+        (error:any) => {console.log(error)}
       )
     }
     else{

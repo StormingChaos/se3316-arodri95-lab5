@@ -125,6 +125,7 @@ router.route('/subjects/:subject/:courseCode/:opComponent?')
         }
     })
 
+// FOR REVIEWS
 router.route('/reviews/:subject/:courseCode')
     // TODO get list of reviews for a course
     .get((req, res) => {
@@ -153,6 +154,7 @@ router.route('/schedules')
     .post((req, res) => {
         console.log(req.body);
         req.body.name = sanitize(req.body.name);
+        req.body.description = sanitize(req.body.description);
         const newSchedule = req.body;
         if (newSchedule.name) {
             const exists = schedules.find(s => s.name === newSchedule.name);
@@ -177,6 +179,33 @@ router.route('/schedules')
         fs.writeFileSync('Lab3-Schedules-List.json', writeData);
         res.send("All schedules deleted");
     })
+
+    // THIS DOESNT WORK DONT UNCOMMENT TypeError ScheduleDisp.courses is undefined
+// router.route('/schedules/public/')
+//     //TODO get list of public schedules
+//     .get((req, res) => {
+//         const schedule = schedules.filter(s => s.isPublic === true);
+//         if (schedules.length > 0)
+//         {
+//             res.send(schedule);
+//         }
+//         else{
+//             res.status(400).send("No public schedules exist");
+//         }
+//     })
+
+// router.route('/schedules/:user/')
+//     //TODO get list of user schedules
+//     .get((req, res) => {
+//         const schedule = schedules.filter(s => s.user === req.params.user);
+//         if (schedules.length > 0)
+//         {
+//             res.send(schedule);
+//         }
+//         else{
+//             res.status(400).send(`User ${req.params.user} has no schedules`);
+//         }
+//     })
 
 router.route('/schedules/:name')
     // get details for specified schedule
@@ -231,6 +260,7 @@ router.route('/schedules/:name')
 //install the router at /api/courses
 app.use('/api/catalogue', router);
 
+//create https server
 var httpsServer = https.createServer(options, app);
 httpsServer.listen(port, () => {
     console.log(`Listening on port ${port}`);
