@@ -44,7 +44,6 @@ export class SchedulesComponent implements OnInit {
   setDescription = "";
 
   // edit schedule
-  schName = "";
   isPublic = false;
   description = "";
 
@@ -161,11 +160,15 @@ export class SchedulesComponent implements OnInit {
 
   getScheduleDetails() {
     if (this.scheduleSel != "Choose a Schedule"){
-      
+      this.backend.getSchedule(this.scheduleSel).subscribe(
+        (res) => {
+          this.isPublic = res.isPublic;
+          this.description = res.description;
+        }
+      )
     }
     else{
       // clear fields
-      this.schName = "";
       this.isPublic = false;
       this.description = "";
     }

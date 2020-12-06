@@ -42,7 +42,7 @@ var regex = /([^\u0041-\u005A\u0061-\u007A\u00AA\u00B5\u00BA\u00C0-\u00D6\u00D8-
 
 //remove all special characters from string
 function sanitize(str){
-    str = str.replace(regex,"");
+    str = str.replace(regex," ");
     return str.trim();
 }
 

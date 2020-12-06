@@ -11,7 +11,7 @@
             <label for="public-checkbox"> Public: </label>
             <input type="checkbox" name="public-checkbox" [(ngModel)]="setPublic">
             <br><label for="description">Description: </label>
-            <textarea name="description" [(ngModel)]="setDescription"></textarea>
+            <textarea rows="5" cols="50" name="description" [(ngModel)]="setDescription"></textarea>
             <br><input type='submit' value="Create">
             <p>Invalid characters will be removed from the name and description</p>
         </form>
@@ -24,6 +24,8 @@
             <option>Choose a Schedule</option>
             <option *ngFor="let schedule of scheduleList">{{schedule["name"]}}</option>
         </select>
+        <label for="changeVisibility"> Public: </label>
+        <input type="checkbox" name="changeVisibility" [(ngModel)]="isPublic">
         <br>
         <!-- Subject Selection Box -->
         <label for="add-subject"> Subject </label>
@@ -51,17 +53,13 @@
         </div>
 
         <!-- change details -->
-        <label for="changeSchName">Change Name: </label>
-        <input type="text" name="changeSchedule" [(ngModel)]="schName">
-        <label for="changeVisibility"> Public: </label>
-        <input type="checkbox" name="changeVisibility" [(ngModel)]="isPublic">
-        <br><label for="changeDescription">Change Description: </label>
-        <textarea></textarea>
+        <label for="changeDescription">Change Description: </label>
+        <textarea rows="5" cols="50" name="changeDescription" [(ngModel)]="description"></textarea>
 
         <!-- Schedule Management Buttons --><br>
-        <button id="confirm-list" (click)="updateSchedule();displaySchedule()">Confirm Changes</button>
-        <button id="delete-schedule" (click)="deleteSchedule()">Delete this Schedule</button>
-        <button id="delete-all" (click)="deleteAllSchedules()">Delete all Schedules</button>
+        <button id="confirm-list" (click)="updateSchedule();displaySchedule();getSchedules()">Confirm Changes</button>
+        <button id="delete-schedule" (click)="deleteSchedule();getSchedules()">Delete this Schedule</button>
+        <button id="delete-all" (click)="deleteAllSchedules();getSchedules()">Delete all Schedules</button>
     </div>
 </div>
 </ng-container>
@@ -125,7 +123,7 @@
     <br>
     <ng-container *ngIf="showList">
     <ul class="fullScheduleList" *ngFor="let schedule of scheduleList">
-        <li>{{schedule["name"]}}, Number of Courses: {{schedule["numCourses"]}}, Created By: {{schedule["user"]}}, Last Modified: {{schedule['date'] | date:'short'}}</li>
+        <li>{{schedule["name"]}}, Number of Courses: {{schedule["numCourses"]}}</li>
     </ul>
     </ng-container>
 </div>

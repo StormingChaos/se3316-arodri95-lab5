@@ -51,7 +51,7 @@ export class BackendService {
 
   putSchedule(name:string, isPublic:Boolean, description:string, date:any, user:String, courses:Array<object>):any{
     return this.http.put(`${this.url}/api/catalogue/schedules/${name}`,
-    JSON.stringify({name:name, user:user, date:date, isPublic:isPublic, courses:courses}), httpOptions);
+    JSON.stringify({name:name, user:user, description:description, date:date, isPublic:isPublic, courses:courses}), httpOptions);
   }
 
   deleteSchedule(name:string):any{
