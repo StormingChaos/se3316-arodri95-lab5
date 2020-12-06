@@ -23,8 +23,6 @@ export class CoursesComponent implements OnInit {
   subjectDisp = [];
   courseDisp = [];
 
-  courseSearch = "";
-
   //toggles
   public showList:boolean = true;
   public showSubjects:boolean = false;
@@ -35,10 +33,6 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {
     this.getCourses();
     this.getSubjects();
-  }
-
-  search() : void {
-    alert("You entered " + this.courseSearch);
   }
 
   getCourses() : void {

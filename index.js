@@ -127,15 +127,29 @@ router.route('/subjects/:subject/:courseCode/:opComponent?')
 
 // FOR REVIEWS
 router.route('/reviews/:subject/:courseCode')
-    // TODO get list of reviews for a course
+    //  get list of reviews for a course
     .get((req, res) => {
         const list = reviews.filter(s => s.subject === req.params.subject);
         const myRes = list.filter(s => s.catalog_nbr == req.params.courseCode);
         if (myRes) {
-            
+            res.send(myRes);
+        }
+        else{
+            res.status(404).send("No reviews found for this course");
         }
     })
-    //TODO post a review
+    // post a review
+    .post((req, res) => {
+        console.log(req.body);
+        req.body.review - sanitize(req.body.review);
+        const newReview = req.body;
+
+        //push new review to array
+        reviews.push(newReview);
+        const writeData = JSON.stringify(reviews, null, 2);
+        fs.writeFileSync('Lab5-Course-Reviews.json', writeData);
+        res.send(newReview);
+    })
     //TODO remove a review
     //TODO toggle hide a review
 

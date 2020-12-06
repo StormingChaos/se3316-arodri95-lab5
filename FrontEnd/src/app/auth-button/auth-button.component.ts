@@ -17,7 +17,7 @@ export class AuthButtonComponent implements OnInit {
   }
 
   login() {
-    this.auth.loginWithPopup();
+    this.auth.loginWithRedirect();
   }
 
   logout() {
