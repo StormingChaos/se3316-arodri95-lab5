@@ -6,9 +6,12 @@ const https = require('https');
 
 //for file management
 const fs = require('fs');
-const data = fs.readFileSync('Lab3-timetable-data.json', 'utf-8');
-const data2 = fs.readFileSync('Lab3-Schedules-List.json', 'utf-8');
-const data3 = fs.readFileSync('Lab5-Course-Reviews.json', 'utf-8');
+const timetableFile = "Lab3-timetable-data.json";
+const schedulesFile = "Lab3-Schedules-List.json";
+const reviewsFile = "Lab5-Course-Reviews.json";
+const data = fs.readFileSync(timetableFile, 'utf-8');
+const data2 = fs.readFileSync(schedulesFile, 'utf-8');
+const data3 = fs.readFileSync(reviewsFile, 'utf-8');
 const courses = JSON.parse(data);
 const schedules = JSON.parse(data2);
 const reviews = JSON.parse(data3);
@@ -147,7 +150,7 @@ router.route('/reviews/:subject/:courseCode')
         //push new review to array
         reviews.push(newReview);
         const writeData = JSON.stringify(reviews, null, 2);
-        fs.writeFileSync('Lab5-Course-Reviews.json', writeData);
+        fs.writeFileSync(reviewsFile, writeData);
         res.send(newReview);
     })
     //TODO remove a review
@@ -178,7 +181,7 @@ router.route('/schedules')
             else {
                 schedules.push(newSchedule);
                 const writeData = JSON.stringify(schedules, null, 2);
-                fs.writeFileSync('Lab3-Schedules-List.json', writeData);
+                fs.writeFileSync(schedulesFile, writeData);
                 res.send(newSchedule);
             }
         }
@@ -190,36 +193,9 @@ router.route('/schedules')
     .delete((req, res) => {
         schedules.splice(0, schedules.length);
         const writeData = JSON.stringify(schedules, null, 2);
-        fs.writeFileSync('Lab3-Schedules-List.json', writeData);
+        fs.writeFileSync(schedulesFile, writeData);
         res.send("All schedules deleted");
     })
-
-    // THIS DOESNT WORK DONT UNCOMMENT TypeError ScheduleDisp.courses is undefined
-// router.route('/schedules/public/')
-//     //TODO get list of public schedules
-//     .get((req, res) => {
-//         const schedule = schedules.filter(s => s.isPublic === true);
-//         if (schedules.length > 0)
-//         {
-//             res.send(schedule);
-//         }
-//         else{
-//             res.status(400).send("No public schedules exist");
-//         }
-//     })
-
-// router.route('/schedules/:user/')
-//     //TODO get list of user schedules
-//     .get((req, res) => {
-//         const schedule = schedules.filter(s => s.user === req.params.user);
-//         if (schedules.length > 0)
-//         {
-//             res.send(schedule);
-//         }
-//         else{
-//             res.status(400).send(`User ${req.params.user} has no schedules`);
-//         }
-//     })
 
 router.route('/schedules/:name')
     // get details for specified schedule
@@ -251,7 +227,7 @@ router.route('/schedules/:name')
             schedules[schedule] = newSchedule;
             
             const writeData = JSON.stringify(schedules, null, 2);
-            fs.writeFileSync('Lab3-Schedules-List.json', writeData);
+            fs.writeFileSync(schedulesFile, writeData);
         }
 
         res.send(newSchedule);
@@ -267,7 +243,7 @@ router.route('/schedules/:name')
             res.send(`Schedule \'${schedules[index].name}\' was deleted`);
             schedules.splice(index, 1);
             const writeData = JSON.stringify(schedules, null, 2);
-            fs.writeFileSync('Lab3-Schedules-List.json', writeData);
+            fs.writeFileSync(schedulesFile, writeData);
         }
     })
 
