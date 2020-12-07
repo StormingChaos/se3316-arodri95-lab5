@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 
-import Config from '../AWSURL.json';
-
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -15,7 +13,7 @@ const httpOptions = {
 })
 export class BackendService {
 
-  url = Config.url;
+  url = 'https://ec2-54-175-219-226.compute-1.amazonaws.com:3000/';
 
   constructor(private http: HttpClient) { }
 
