@@ -1,96 +1,13 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Course Search</title>
-    <meta name="description" content="Allows a user to view and manage a course timetable">
-    <meta name="author" content="Adriana Rodrigues">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="data:,">
-</head>
-
+  <meta charset="utf-8">
+  <title>SE3316arodri95Lab5</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="styles.075346f4f09fa3c306ff.css"></head>
 <body>
-    <h1>Welcome to the Western Timetable manager!</h1>
-
-    <div class='intro'>
-        <!-- Options -->
-        <h2>Search/Create Schedules</h2>
-
-        <div class='schedule'>
-            <!-- Text box to create a new schedule -->
-            <p>Create a Schedule</p>
-            <label for='schedule-name'>Schedule Name (No Special Characters)</label>
-            <input type="text" id='schedule-name'>
-            <button id="create-schedule">Create</button>
-
-            <!-- Schedule Selection Box -->
-            <p>Update Schedule</p>
-            <label for='schedule-name-dropdown'>Schedule</label>
-            <select name='schedule-name-dropdown' id='schedule-name-dropdown'>
-                <option>Choose a Schedule</option>
-            </select>
-
-            <!-- Subject Selection Box -->
-            <label for="add-subject">Subject</label>
-            <select name="add-subject" id="add-subject">
-                <option>Choose a Subject</option>
-            </select>
-
-            <!-- Course Selection box -->
-            <label for="add-course">Course Code</label>
-            <select name='add-course' id='add-course'>
-                <option>Choose a Course Code</option>
-            </select>
-
-            <!-- Add course to schedule button -->
-            <button id="update-list">Add Courses to List</button>
-
-            <!-- Display courses to be added -->
-            <div class='add'>
-                <button id="clear-pending">Clear Course Selections</button>
-                <ul id="pending"></ul>
-            </div>
-
-            <!-- Schedule Management Buttons -->
-            <button id="confirm-list">Confirm Changes</button>
-            <button id="delete-schedule">Delete this Schedule</button>
-            <button id="delete-all">Delete all Schedules</button>
-        </div>
-
-        <div class='search'>
-            <p>Refine Results <button id="apply-filters">Apply Filters</button></p>
-            <!-- Subject Search Field -->
-            <label for="subject-dropdown">Search by Subject</label>
-            <select name="subject-dropdown" id="subject-dropdown">
-                <option>Show all Subjects</option>
-            </select>
-
-            <!-- Course Code Search Field -->
-            <label for="course-code-dropdown">Refine by Course Code</label>
-            <select name="course-code-dropdown" id="course-code-dropdown">
-                <option>Refine by Course Code</option>
-            </select>
-
-            <!-- Optional Component Search Field -->
-            <label for="component-dropdown">Refine by Component</label>
-            <select name="component-dropdown" id="component-dropdown">
-                <option>Lec</option>
-            </select>
-            <br>
-            <!-- Schedule Search Field -->
-            <p>Find Schedule <button id="show-schedule">Show Details</button></p>
-            <label for="schedule-dropdown">Search by Schedule</label>
-            <select name="schedule-dropdown" id="schedule-dropdown">
-                <option>Choose a Schedule</option>
-            </select>
-        </div>
-
-        <!-- Results -->
-        <h3>Results <button id="get-courses">Get List of Courses</button><button id="get-schedules">Get List of Schedules</button></h3>
-        <ol id="results-list"></ol>
-    </div>
-
-<script defer src="scripts.js"></script>
-</body>
+  <app-root></app-root>
+<script src="runtime.359d5ee4682f20e936e9.js" defer></script><script src="polyfills.9bf4dad123bd95dda86e.js" defer></script><script src="main.a3906660f9abd6c562e0.js" defer></script></body>
 </html>
