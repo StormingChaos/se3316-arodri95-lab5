@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 
-import Config from '../../../AWSURL.json';
+import Config from '../AWSURL.json';
 
 const httpOptions = {
   headers: new HttpHeaders({
