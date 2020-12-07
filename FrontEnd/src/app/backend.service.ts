@@ -13,7 +13,7 @@ const httpOptions = {
 })
 export class BackendService {
 
-  url = 'https://ec2-54-175-219-226.compute-1.amazonaws.com:3000/';
+  url = 'https://ec2-54-175-219-226.compute-1.amazonaws.com:3000';
 
   constructor(private http: HttpClient) { }
 
